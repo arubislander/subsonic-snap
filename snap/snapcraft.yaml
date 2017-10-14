@@ -12,8 +12,9 @@ confinement: strict # use 'strict' once you have the right plugs and slots
 
 apps:
   subsonic:
+#    command: subsonic.sh
     command: wrapper.sh
-    daemon: forking
+    daemon: simple
     restart-condition: on-abnormal
     plugs: 
       - network
