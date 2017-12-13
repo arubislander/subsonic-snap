@@ -34,11 +34,11 @@ parts:
       - lame
       - ffmpeg
     prepare: |
-      cd $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/jre/lib/security
+      rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-8-openjdk-*/jre/lib/security/cacerts
       #echo "** Deleting $PWD\cacerts"
-      rm cacerts
+      #rm cacerts
       #ln -s ../../../../../../../etc/ssl/certs/java/cacerts cacerts
-  
+
   launcher:
     plugin: dump
     source: bin
