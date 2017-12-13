@@ -30,9 +30,14 @@ parts:
   jdk:
     plugin: nil
     stage-packages: 
-      - openjdk-8-jdk-headless
+      - openjdk-8-jre-headless
       - lame
       - ffmpeg
+    prepare: |
+      cd $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/jre/lib/security
+      #echo "** Deleting $PWD\cacerts"
+      rm cacerts
+      #ln -s ../../../../../../../etc/ssl/certs/java/cacerts cacerts
   
   launcher:
     plugin: dump

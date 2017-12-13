@@ -1,4 +1,5 @@
 *.snap
+*.tar.bz2
 parts
 prime
 snap/.snapcraft
