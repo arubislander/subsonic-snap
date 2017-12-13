@@ -15,3 +15,5 @@ export SUBSONIC_DEFAULT_PLAYLIST_FOLDER=$SNAP_USER_COMMON/var/playlists
 export PATH=$SNAP/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/bin:$PATH
 
 $SNAP/subsonic.sh
+
+#tail -f $SUBSONIC_HOME/subsonic.log
