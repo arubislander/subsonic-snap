@@ -17,13 +17,22 @@ SUBSONIC_TRANSCODE=$SUBSONIC_HOME/transcode
 
 mkdir -p "$SUBSONIC_TRANSCODE"
 # lame
-if [ ! -f "$SUBSONIC_TRANSCODE/lame" ]; then
-    ln -s $SNAP/usr/bin/lame $SUBSONIC_TRANSCODE/lame
+if [ -f "$SUBSONIC_TRANSCODE/lame" ]; then
+    rm $SUBSONIC_TRANSCODE/lame
 fi
+ln -s $SNAP/usr/bin/lame $SUBSONIC_TRANSCODE/lame
+
 # ffmpeg
-if [ ! -f "$SUBSONIC_TRANSCODE/ffmpeg" ]; then
-    ln -s $SNAP/usr/bin/ffmpeg $SUBSONIC_TRANSCODE/ffmpeg
+if [ -f "$SUBSONIC_TRANSCODE/ffmpeg" ]; then
+    rm $SUBSONIC_TRANSCODE/ffmpeg
 fi
+ln -s $SNAP/usr/bin/ffmpeg $SUBSONIC_TRANSCODE/ffmpeg
+
+# flac
+if [ -f "$SUBSONIC_TRANSCODE/flac" ]; then
+    rm $SUBSONIC_TRANSCODE/flac
+fi
+ln -s $SNAP/usr/bin/flac $SUBSONIC_TRANSCODE/flac
 
 mkdir -p "$SUBSONIC_HOME"
 mkdir -p "$SUBSONIC_DEFAULT_MUSIC_FOLDER"
