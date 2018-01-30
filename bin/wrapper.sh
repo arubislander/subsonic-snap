@@ -8,6 +8,8 @@
 
 # Note: set some environment variables relative to the snap.
 
+export LC_ALL=C.UTF-8 
+
 export SUBSONIC_HOME=$SNAP_USER_COMMON/var/subsonic
 export SUBSONIC_DEFAULT_MUSIC_FOLDER=$SNAP_USER_COMMON/var/music
 export SUBSONIC_DEFAULT_PODCAST_FOLDER=$SNAP_USER_COMMON/var/music/Podcast
