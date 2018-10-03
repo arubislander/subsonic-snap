@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 ###################################################################################
-# Shell script hook for running when Subsonic snap installs.
+# Shell script hook for running when Subsonic snap install/refresh/config change.
 #
 # Author: ArubIslander
 ###################################################################################
@@ -39,4 +39,60 @@ mkdir -p "$SUBSONIC_DEFAULT_MUSIC_FOLDER"
 mkdir -p "$SUBSONIC_DEFAULT_PODCAST_FOLDER"
 mkdir -p "$SUBSONIC_DEFAULT_PLAYLIST_FOLDER"
 
-export PATH=$SNAP/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/bin:$PATH
+SUBSONIC_PORT=${SUBSONIC_PORT:-4040}
+SUBSONIC_HTTPS_PORT=${SUBSONIC_HTTPS_PORT:-0}
+SUBSONIC_CONTEXT_PATH=${SUBSONIC_CONTEXT_PATH:-/}
+SUBSONIC_DB=${SUBSONIC_DB}
+SUBSONIC_MAX_MEMORY=${SUBSONIC_MAX_MEMORY:-150}
+
+#export PATH=$SNAP/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/bin:$PATH
+
+# Obtain configuration value
+value=$(snapctl get host)
+host="${value:-0.0.0.0}"
+
+# Validate it
+if ! expr "$host" :  '^[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+$' > /dev/null; then
+    echo "\"$host\" is not a valid host value" >&2
+    exit 1
+fi
+
+# Obtain configuration value
+value="$(snapctl get port)"
+port="${value:-4040}"
+
+# Validate it
+if ! expr "$port" : '^[0-9]\+$' > /dev/null; then
+    echo "\"$port\" is not a valid port" >&2
+    exit 1
+fi
+
+# Obtain configuration value
+value="$(snapctl get https-port)"
+https_port="${value:-0}"
+
+# Validate it
+if ! expr "$https_port" : '^[0-9]\+$' > /dev/null; then
+    echo "\"$https_port\" is not a valid port" >&2
+    exit 1
+fi
+
+# Obtain configuration value
+value="$(snapctl get context-path)"
+context_path="${value:-/}"
+
+# Validate it
+if ! expr "$context_path" : '^/[^/]*$' > /dev/null; then
+    echo "\"$context_path\" is not a context path" >&2
+    exit 1
+fi
+
+# Obtain configuration value
+value="$(snapctl get max-memory)"
+max_memory="${value:-150}"
+
+# Validate it
+if ! expr "$max_memory" : '^[0-9]\+$' > /dev/null; then
+    echo "\"$max_memory\" is not a max-memory value" >&2
+    exit 1
+fi
