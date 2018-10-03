@@ -53,11 +53,12 @@ parts:
     plugin: nil
     stage-packages: 
       - openjdk-8-jre-headless
-    prepare: |
+    override-build: |
       rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-8-openjdk-*/jre/lib/security/cacerts
       #echo "** Deleting $PWD\cacerts"
       #rm cacerts
       #ln -s ../../../../../../../etc/ssl/certs/java/cacerts cacerts
+      snapcraftctl build
 
   launcher:
     plugin: dump
