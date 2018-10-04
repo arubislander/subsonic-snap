@@ -39,17 +39,14 @@ mkdir -p "$SUBSONIC_DEFAULT_MUSIC_FOLDER"
 mkdir -p "$SUBSONIC_DEFAULT_PODCAST_FOLDER"
 mkdir -p "$SUBSONIC_DEFAULT_PLAYLIST_FOLDER"
 
-SUBSONIC_PORT=${SUBSONIC_PORT:-4040}
-SUBSONIC_HTTPS_PORT=${SUBSONIC_HTTPS_PORT:-0}
-SUBSONIC_CONTEXT_PATH=${SUBSONIC_CONTEXT_PATH:-/}
-SUBSONIC_DB=${SUBSONIC_DB}
-SUBSONIC_MAX_MEMORY=${SUBSONIC_MAX_MEMORY:-150}
-
 #export PATH=$SNAP/usr/lib/jvm/java-8-openjdk-$SNAP_ARCH/bin:$PATH
 
 # Obtain configuration value
-value=$(snapctl get host)
-host="${value:-0.0.0.0}"
+host=$(snapctl get host)
+if ! expr "$host" : '^.\+$' > /dev/null; then
+    host="0.0.0.0"
+    snapctl set host="$host"
+fi
 
 # Validate it
 if ! expr "$host" :  '^[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+$' > /dev/null; then
@@ -58,8 +55,11 @@ if ! expr "$host" :  '^[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+$' > /dev/null; then
 fi
 
 # Obtain configuration value
-value="$(snapctl get port)"
-port="${value:-4040}"
+port="$(snapctl get port)"
+if ! expr "$port" : '^.\+$' > /dev/null; then
+    port="4040"
+    snapctl set port="$port"
+fi
 
 # Validate it
 if ! expr "$port" : '^[0-9]\+$' > /dev/null; then
@@ -68,8 +68,11 @@ if ! expr "$port" : '^[0-9]\+$' > /dev/null; then
 fi
 
 # Obtain configuration value
-value="$(snapctl get https-port)"
-https_port="${value:-0}"
+https_port="$(snapctl get https-port)"
+if ! expr "$https_port" : '^.\+$' > /dev/null; then
+    https_port="0"
+    snapctl set https-port="$https_port"
+fi
 
 # Validate it
 if ! expr "$https_port" : '^[0-9]\+$' > /dev/null; then
@@ -78,8 +81,11 @@ if ! expr "$https_port" : '^[0-9]\+$' > /dev/null; then
 fi
 
 # Obtain configuration value
-value="$(snapctl get context-path)"
-context_path="${value:-/}"
+context_path="$(snapctl get context-path)"
+if ! expr "$context_path" : '^.\+$' > /dev/null; then
+    context_path="/"
+    snapctl set context-path="$context_path"
+fi
 
 # Validate it
 if ! expr "$context_path" : '^/[^/]*$' > /dev/null; then
@@ -88,8 +94,11 @@ if ! expr "$context_path" : '^/[^/]*$' > /dev/null; then
 fi
 
 # Obtain configuration value
-value="$(snapctl get max-memory)"
-max_memory="${value:-150}"
+max_memory="$(snapctl get max-memory)"
+if ! expr "$max_memory" : '^.\+$' > /dev/null; then
+    max_memory="150"
+    snapctl set max-memory="$max_memory"
+fi
 
 # Validate it
 if ! expr "$max_memory" : '^[0-9]\+$' > /dev/null; then
