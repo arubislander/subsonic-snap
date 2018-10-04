@@ -37,7 +37,7 @@ This snap runs under full confinement, which means it will not be able to access
 
 After that, anything mounted under /media will be accessible from the snap.
 
-## new in version 6.1.3+snap14
+## New in version 6.1.3+snap14
 Introduction of configuration settings:
 
 - **host**: IP address for the servie to listen on. Defaults to *0.0.0.0* to listen on all IP addresses.
@@ -50,11 +50,11 @@ Introduction of configuration settings:
 
 To set the subsonic service to use a maximum of 450 MB and listen on URL: http://192.168.5.10:8080/subsonic do:
 
-    $ snap set subsonic-arubislander host=192.168.1.10 port=8080 context-path=subsonic max-memory=450
+    $ snap set subsonic-arubislander host=192.168.1.10 port=8080 context-path="/subsonic" max-memory=450
 
 The service needs to be restarted to pick up the new settings:
 
     $ snap restart subsonic-arubislander
 
 
-Happy listening
+Happy listening!
