@@ -14,7 +14,6 @@ distributions.</p>
 
 <p align="center">Published for <img src="https://raw.githubusercontent.com/anythingcodes/slack-emoji-for-techies/gh-pages/emoji/tux.png" align="top" width="24" /> with 💝 by ArubIslander</p>
 
-
 ## Build from repo
 
     $ git clone https://github.com/arubislander/subsonic-snap.git
@@ -25,17 +24,27 @@ distributions.</p>
 
     sudo snap install subsonic-arubislander
 
+or
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/subsonic-arubislander)
+
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
 ## Summary
 
 ### Subsonic is a media streaming and sharing platform created by Sindre Mehus. (see https://www.subsonic.org)
 
-This snap runs under full confinement, which means it will not be able to access files outside of it's 'home' folder. Normally this would make the app pretty useless, right? So to get around this issue somewhat the snap also consumes the removable-media interface. But it is not hooked up by default. So after installing the snap do:
+This snap runs under full confinement, which means it will not be able to access files outside of its 'home' folder. Normally this would make the app pretty useless, right? So to get around this issue somewhat the snap also consumes the removable-media interface. But it is not hooked up by default. So after installing the snap do:
 
     $ sudo snap connect subsonic-arubislander:removable-media
 
-After that, anything mounted under /media will be accessible from the snap.
+After that, anything mounted under /media will be accessible to the snap.
+
+## New in version 6.1.5+snap1
+See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) for Subsonic.
+
+## New in version 6.1.4+snap1
+See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) for Subsonic.
 
 ## New in version 6.1.3+snap14
 Introduction of configuration settings:
