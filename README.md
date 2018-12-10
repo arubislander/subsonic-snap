@@ -49,7 +49,7 @@ See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) fo
 ## New in version 6.1.3+snap14
 Introduction of configuration settings:
 
-- **host**: IP address for the servie to listen on. Defaults to *0.0.0.0* to listen on all IP addresses.
+- **host**: IP address for the service to listen on. Defaults to *0.0.0.0* to listen on all IP addresses.
 - **port**: What port the service should listen on. Defaults to *4040*
 - **https-port**: What port to use for https. Defaults to *0*, for no https
 - **context-path**: The context path to use for the url of the service. Defaults to "/"
@@ -59,11 +59,11 @@ Introduction of configuration settings:
 
 To set the subsonic service to use a maximum of 450 MB and listen on URL: http://192.168.5.10:8080/subsonic do:
 
-    $ snap set subsonic-arubislander host=192.168.1.10 port=8080 context-path="/subsonic" max-memory=450
+    $ sudo snap set subsonic-arubislander host=192.168.1.10 port=8080 context-path="/subsonic" max-memory=450
 
 The service needs to be restarted to pick up the new settings:
 
-    $ snap restart subsonic-arubislander
+    $ sudo snap restart subsonic-arubislander
 
 
 Happy listening!
