@@ -40,6 +40,9 @@ This snap runs under full confinement, which means it will not be able to access
 
 After that, anything mounted under /media will be accessible to the snap.
 
+## New in version 6.1.5+snap2
+Refresh of packages for security updates.
+
 ## New in version 6.1.5+snap1
 See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) for Subsonic.
 
