@@ -40,6 +40,9 @@ This snap runs under full confinement, which means it will not be able to access
 
 After that, anything mounted under /media will be accessible to the snap.
 
+## New in version 6.1.5+snap3
+Refresh of packages for security updates.
+
 ## New in version 6.1.5+snap2
 Refresh of packages for security updates.
 
@@ -56,7 +59,7 @@ Introduction of configuration settings:
 - **port**: What port the service should listen on. Defaults to *4040*
 - **https-port**: What port to use for https. Defaults to *0*, for no https
 - **context-path**: The context path to use for the url of the service. Defaults to "/"
-- **max-memory**: Max amount of memory in MB that the java virtual machine is allowd to use. Defaults to *150*  
+- **max-memory**: Max amount of memory in MB that the java virtual machine is allowed to use. Defaults to *150*  
 
 ### Example:
 
