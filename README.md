@@ -40,19 +40,20 @@ This snap runs under full confinement, which means it will not be able to access
 
 After that, anything mounted under /media will be accessible to the snap.
 
-## New in version 6.1.5+snap3
+## Version history
+### New in version 6.1.5+snap3
 Refresh of packages for security updates.
 
-## New in version 6.1.5+snap2
+### New in version 6.1.5+snap2
 Refresh of packages for security updates.
 
-## New in version 6.1.5+snap1
+### New in version 6.1.5+snap1
 See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) for Subsonic.
 
-## New in version 6.1.4+snap1
+### New in version 6.1.4+snap1
 See the [official release notes](http://www.subsonic.org/pages/changelog.jsp) for Subsonic.
 
-## New in version 6.1.3+snap14
+### New in version 6.1.3+snap14
 Introduction of configuration settings:
 
 - **host**: IP address for the service to listen on. Defaults to *0.0.0.0* to listen on all IP addresses.
@@ -61,7 +62,7 @@ Introduction of configuration settings:
 - **context-path**: The context path to use for the url of the service. Defaults to "/"
 - **max-memory**: Max amount of memory in MB that the java virtual machine is allowed to use. Defaults to *150*  
 
-### Example:
+#### Example:
 
 To set the subsonic service to use a maximum of 450 MB and listen on URL: http://192.168.5.10:8080/subsonic do:
 
