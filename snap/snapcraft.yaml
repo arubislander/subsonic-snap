@@ -1,5 +1,5 @@
 name: subsonic-arubislander 
-version: '6.1.6+snap10'
+version: '6.1.6+snap11'
 summary: Your complete, personal media streamer.
 description: |
   Stream from your own computer.
@@ -9,7 +9,7 @@ description: |
 
 grade: stable 
 confinement: strict 
-base: core
+base: core18
 
 apps:
 #  path:
@@ -52,81 +52,6 @@ parts:
       - ffmpeg
       - libglu1-mesa
 
-  # ffmpeg:
-  #   build-packages:
-  #   - git
-  #   - g++
-  #   - make
-  #   - yasm
-  #   - autoconf
-  #   - libtool
-  #   - cmake
-  #   - pkg-config
-  #   - automake
-  #   - build-essential
-  #   - libass-dev
-  #   - libfreetype6-dev
-  #   - libsdl1.2-dev
-  #   - libtheora-dev
-  #   - libva-dev
-  #   - libvdpau-dev
-  #   - libvorbis-dev
-  #   - libxcb1-dev
-  #   - libxcb-shm0-dev
-  #   - libxcb-xfixes0-dev
-  #   - texinfo
-  #   - zlib1g-dev
-  #   - libx264-dev
-  #   - libmp3lame-dev
-  #   - libopus-dev
-  #   - libx265-dev
-  #   - libvpx-dev
-  #   configflags:
-  #   - --prefix=/usr
-  #   - --enable-gpl
-  #   - --enable-libass
-  #   - --enable-libfreetype
-  #   - --enable-libmp3lame
-  #   - --enable-libopus
-  #   - --enable-libtheora
-  #   - --enable-libvorbis
-  #   - --enable-libvpx
-  #   - --enable-libx264
-  #   - --enable-libx265
-  #   - --enable-nonfree
-  #   plugin: autotools
-  #   source: git://source.ffmpeg.org/ffmpeg.git
-  #   source-type: git
-  #   stage-packages:
-  #   - libasound2
-  #   - libass5
-  #   - libdrm2
-  #   - libfontconfig1
-  #   - libfribidi0
-  #   - libgraphite2-3
-  #   - libharfbuzz0b
-  #   - libmp3lame0
-  #   - try: [libnuma1]
-  #   - libogg0
-  #   - libopus0
-  #   - libtheora0
-  #   - libva-drm1
-  #   - libva1
-  #   - libvdpau1
-  #   - libvorbis0a
-  #   - libvorbisenc2
-  #   - libvpx3
-  #   - libx11-6
-  #   - libx264-148
-  #   - libx265-79
-  #   - libxau6
-  #   - libxcb-shape0
-  #   - libxcb-shm0
-  #   - libxcb-xfixes0
-  #   - libxcb1
-  #   - libxdmcp6
-  #   - libxext6
-      
   jre:
     plugin: nil
     stage-packages: 
@@ -141,3 +66,27 @@ parts:
   launcher:
     plugin: dump
     source: bin
+
+  # This part removes all the files in this snap which already exist in
+  # connected content and base snaps. Since these files will be available
+  # at runtime from the content and base snaps, they do not need to be
+  # included in this snap itself.
+  #
+  # More info: https://forum.snapcraft.io/t/reducing-the-size-of-desktop-snaps/17280#heading--cleanup-part
+  #
+  cleanup:
+    after:  # Make this part run last; list all your other parts here
+      - subsonic
+      - lame
+      - flac
+      - ffmpeg
+      - jre
+      - launcher
+    plugin: nil
+    build-snaps:  # List all content-snaps and base snaps you're using here
+      - core18
+    override-prime: |
+      set -eux
+      for snap in "core18"; do  # List all content-snaps and base snaps you're using here
+          cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+      done
