@@ -1,5 +1,5 @@
 name: subsonic-arubislander 
-version: '6.1.6+snap12'
+version: '6.1.6+snap13'
 summary: Your complete, personal media streamer.
 description: |
   Stream from your own computer.
@@ -9,17 +9,17 @@ description: |
 
 grade: stable 
 confinement: strict 
-base: core
+base: core18
 
 apps:
 #  path:
 #    command: echo "$PATH"
-#  lame:
-#    command: lame
-#  ffmpeg:
-#    command: ffmpeg
-#  flac:
-#    command: flac
+  lame:
+    command: lame
+  ffmpeg:
+    command: ffmpeg
+  flac:
+    command: flac
 
   subsonic:
     command: wrapper.sh
@@ -36,21 +36,22 @@ parts:
     plugin: dump  
     source: https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-6.1.6-standalone.tar.gz
   
-  lame:
-    plugin: nil
-    stage-packages:
-      - lame
+  # lame:
+  #   plugin: nil
+  #   stage-packages:
+  #     - lame
   
-  flac:
-    plugin: nil
-    stage-packages:
-      - flac
+  # flac:
+  #   plugin: nil
+  #   stage-packages:
+  #     - flac
 
-  ffmpeg:
-    plugin: nil
-    stage-packages:
-      - ffmpeg
-      - libglu1-mesa
+  # ffmpeg:
+  #   plugin: nil
+  #   stage-packages:
+  #     - ffmpeg
+  #     - libglu1-mesa
+  #     - libslang2
 
   jre:
     plugin: nil
@@ -66,6 +67,9 @@ parts:
   launcher:
     plugin: dump
     source: bin
+
+  # Do not enable parts below
+  # Cleanup removes packages necessary for ffmpeg to function properly
 
   # This part removes all the files in this snap which already exist in
   # connected content and base snaps. Since these files will be available
