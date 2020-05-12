@@ -1,5 +1,5 @@
 name: subsonic-arubislander 
-version: '6.1.6+snap11'
+version: '6.1.6+snap12'
 summary: Your complete, personal media streamer.
 description: |
   Stream from your own computer.
@@ -9,7 +9,7 @@ description: |
 
 grade: stable 
 confinement: strict 
-base: core18
+base: core
 
 apps:
 #  path:
@@ -74,19 +74,19 @@ parts:
   #
   # More info: https://forum.snapcraft.io/t/reducing-the-size-of-desktop-snaps/17280#heading--cleanup-part
   #
-  cleanup:
-    after:  # Make this part run last; list all your other parts here
-      - subsonic
-      - lame
-      - flac
-      - ffmpeg
-      - jre
-      - launcher
-    plugin: nil
-    build-snaps:  # List all content-snaps and base snaps you're using here
-      - core18
-    override-prime: |
-      set -eux
-      for snap in "core18"; do  # List all content-snaps and base snaps you're using here
-          cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
-      done
+  # cleanup:
+  #   after:  # Make this part run last; list all your other parts here
+  #     - subsonic
+  #     - lame
+  #     - flac
+  #     - ffmpeg
+  #     - jre
+  #     - launcher
+  #   plugin: nil
+  #   build-snaps:  # List all content-snaps and base snaps you're using here
+  #     - core
+  #   override-prime: |
+  #     set -eux
+  #     for snap in "core"; do  # List all content-snaps and base snaps you're using here
+  #         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+  #     done
