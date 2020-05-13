@@ -14,12 +14,12 @@ base: core18
 apps:
 #  path:
 #    command: echo "$PATH"
-  lame:
-    command: lame
-  ffmpeg:
-    command: ffmpeg
-  flac:
-    command: flac
+  # lame:
+  #   command: lame
+  # ffmpeg:
+  #   command: ffmpeg
+  # flac:
+  #   command: flac
 
   subsonic:
     command: wrapper.sh
@@ -35,23 +35,23 @@ parts:
     # See 'snapcraft plugins'
     plugin: dump  
     source: https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-6.1.6-standalone.tar.gz
-  
-  # lame:
-  #   plugin: nil
-  #   stage-packages:
-  #     - lame
-  
-  # flac:
-  #   plugin: nil
-  #   stage-packages:
-  #     - flac
 
-  # ffmpeg:
-  #   plugin: nil
-  #   stage-packages:
-  #     - ffmpeg
-  #     - libglu1-mesa
-  #     - libslang2
+  lame:
+    plugin: nil
+    stage-packages:
+      - lame
+
+  flac:
+    plugin: nil
+    stage-packages:
+      - flac
+
+  ffmpeg:
+    plugin: nil
+    stage-packages:
+      - ffmpeg
+      - libglu1-mesa
+      - libslang2
 
   jre:
     plugin: nil
