@@ -1,5 +1,5 @@
 name: subsonic-arubislander 
-version: '6.1.6+snap27'
+version: '6.1.6+snap28'
 summary: Your complete, personal media streamer.
 description: |
   Stream from your own computer.
@@ -10,6 +10,12 @@ description: |
 grade: stable 
 confinement: strict 
 base: core18
+
+architectures:
+  - build-on: i386
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
 
 apps:
 #  path:
