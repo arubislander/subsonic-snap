@@ -105,3 +105,5 @@ if ! expr "$max_memory" : '^[0-9]\+$' > /dev/null; then
     echo "\"$max_memory\" is not a max-memory value" >&2
     exit 1
 fi
+
+snapctl restart ${SNAP_NAME}.subsonic 2>&1 || true

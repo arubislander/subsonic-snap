@@ -68,7 +68,7 @@ To set the subsonic service to use a maximum of 450 MB and listen on URL: http:/
 
     $ sudo snap set subsonic-arubislander host=192.168.1.10 port=8080 context-path="/subsonic" max-memory=450
 
-The service needs to be restarted to pick up the new settings:
+The service no longer needs to be restarted to pick up the new settings. But if you want to:
 
     $ sudo snap restart subsonic-arubislander
 
