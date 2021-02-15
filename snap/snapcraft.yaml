@@ -1,5 +1,5 @@
 name: subsonic-arubislander 
-version: '6.1.6+snap36'
+version: '6.1.6+snap37'
 summary: Your complete, personal media streamer.
 description: |
   Stream from your own computer.
@@ -9,7 +9,7 @@ description: |
 
 grade: stable 
 confinement: strict 
-base: core18
+base: core
 
 architectures:
   - build-on: i386
@@ -42,33 +42,20 @@ parts:
     plugin: dump  
     source: https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-6.1.6-standalone.tar.gz
 
-  lame:
+  jre:
     plugin: nil
-    stage-packages:
-      - lame
-
-  flac:
-    plugin: nil
-    stage-packages:
-      - flac
-
-  ffmpeg:
-    plugin: nil
-    stage-packages:
+    build-packages:
+      - ca-certificates
+      - ca-certificates-java
+      - openjdk-8-jre-headless
+      - freeglut3
+    stage-packages: 
       - ffmpeg
       - libglu1-mesa
       - libslang2
-
-  jre:
-    plugin: nil
-    stage-packages: 
-      - openjdk-8-jre-headless
-    override-build: |
-      rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-8-openjdk-*/jre/lib/security/cacerts
-      #echo "** Deleting $PWD\cacerts"
-      #rm cacerts
-      #ln -s ../../../../../../../etc/ssl/certs/java/cacerts cacerts
-      snapcraftctl build
+      - flac
+      - lame
+      - freeglut3
 
   launcher:
     plugin: dump
@@ -87,9 +74,6 @@ parts:
   # cleanup:
   #   after:  # Make this part run last; list all your other parts here
   #     - subsonic
-  #     - lame
-  #     - flac
-  #     - ffmpeg
   #     - jre
   #     - launcher
   #   plugin: nil
